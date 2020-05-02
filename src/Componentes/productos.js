@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {connect} from 'react-redux';
 
 
 
@@ -8,7 +9,9 @@ class productos extends Component {
     render() {
         return (
             <div>
-               <h1>Lista de productos</h1>
+               {this.props.lista.map(item=>{
+                   return <img src={item.imagen_principal.ruta}></img>
+               })}
             </div>
 
 
@@ -16,6 +19,10 @@ class productos extends Component {
     }
 }
 
+const mapStateToProps= state =>{
+    return{
+        lista :state.productos
+    }
+}
 
-
-export default productos;
+export default connect(mapStateToProps,null)( productos);
